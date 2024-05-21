@@ -2,6 +2,7 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import './App.css'
 import { useRef, useState } from 'react'
+import { MapControls, OrbitControls } from '@react-three/drei';
 
 const Cube = ({position,size,color}) => {
   const ref = useRef();
@@ -25,8 +26,9 @@ const Sphere = ({position,size,color}) =>{
 
 
   useFrame((state,delta)=>{
+    const speed = isHovered?1 :0.2;
     // ref.current.rotation.x +=delta;
-    ref.current.rotation.y +=delta * 0.2;
+    ref.current.rotation.y +=delta * speed;
   //  ref.current.position.z = Math.sin(state.clock.elapsedTime) * 2;
   })
   return(
@@ -64,6 +66,9 @@ const App = () => {
       </mesh> */}
 
       <Sphere position={[0,0,0]} args={[1,30,31]} color={"green"}/>
+      <OrbitControls  />
+
+      {/* <MapControls/> */}
     </Canvas>
   )
 }
